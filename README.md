@@ -143,8 +143,10 @@ graph TB
    - Check **Active Directory Domain Services**.
    - Add required management tools and install.
 
-<!-- ![Add Roles and Features wizard](your-screenshot-url-here) -->
-<!-- ![Select AD DS role](your-screenshot-url-here) -->
+<!-- ![Add Roles and Features wizard](your-screenshot-url-here) --> <img width="1417" height="778" alt="Screenshot 2026-08-06 235519" src="https://github.com/user-attachments/assets/d1664fb2-bb87-4132-accb-dca8be747a46" />
+
+<!-- ![Select AD DS role](your-screenshot-url-here) --> <img width="982" height="705" alt="Screenshot 2026-08-06 235820" src="https://github.com/user-attachments/assets/2ac9f1f3-dbb9-47e9-b305-4e31f97b0059" />
+
 
 Or install via PowerShell:
 
@@ -192,8 +194,10 @@ Install-ADDSForest `
 5. Create test user accounts and add them to the appropriate group.
 
 <!-- ![Active Directory Users and Computers](your-screenshot-url-here) -->
-<!-- ![Creating an OU](your-screenshot-url-here) -->
-<!-- ![Creating a new user](your-screenshot-url-here) -->
+<!-- ![Creating an OU](your-screenshot-url-here) --> <img width="981" height="687" alt="Screenshot 2026-08-07 000631" src="https://github.com/user-attachments/assets/b4755f01-cf30-4625-a18a-21e5e97ef1d7" />
+
+<!-- ![Creating a new user](your-screenshot-url-here) --> <img width="552" height="509" alt="Screenshot 2026-08-07 001421" src="https://github.com/user-attachments/assets/5b946f92-d9b4-4dde-8617-3b2fc3754dfc" />
+
 
 ```powershell
 # Organizational Units
