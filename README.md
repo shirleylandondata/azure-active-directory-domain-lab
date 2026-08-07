@@ -7,6 +7,7 @@
 ![Cost](https://img.shields.io/badge/cost-%240-brightgreen)
 
 ---
+<img width="1063" height="843" alt="VM Lab1 3" src="https://github.com/user-attachments/assets/e8c3756a-030a-4667-bf8a-4c672f7fddbb" />
 
 ## Overview
 
@@ -104,11 +105,13 @@ graph TB
 7. Configure the **Network Security Group (NSG)** to allow:
    - TCP 3389 (RDP) from your IP
 
-<!-- ![Configure NSG](your-screenshot-url-here) -->
+<!-- ![Configure NSG](your-screenshot-url-here) --> <img width="1063" height="843" alt="VM Lab1 3" src="https://github.com/user-attachments/assets/469866ca-4f1f-4de5-bef8-e6330c458981" />
+
 
 8. Click **Review + Create**, then **Create**.
 
-<!-- ![VM created](your-screenshot-url-here) -->
+<!-- ![VM created](your-screenshot-url-here) --> <img width="1457" height="428" alt="VM_Lab1 4" src="https://github.com/user-attachments/assets/e95efc5c-c685-4b27-a7e6-75c838741652" />
+
 
 > Stop the VM (don't delete it) between sessions — a `Standard_B2s` VM costs roughly $0.05/hour, and stopping it pauses compute billing while preserving your configuration.
 
@@ -122,7 +125,8 @@ graph TB
 4. Before connecting, click **Show Options → Local Resources tab** and check **Clipboard** so you can paste commands into the VM.
 5. Connect using the admin username and password you set at VM creation.
 
-<!-- ![Connect via RDP](your-screenshot-url-here) -->
+<!-- ![Connect via RDP](your-screenshot-url-here) --> <img width="1276" height="655" alt="VM_Lab1 5" src="https://github.com/user-attachments/assets/28c244da-aa18-4ca1-a3d8-15b6c33f591a" />
+
 <!-- ![Enable clipboard sharing](your-screenshot-url-here) -->
 
 ---
