@@ -121,13 +121,15 @@ graph TB
 
 1. Once the VM is running, note its **public IP address** from the Overview page.
 2. In the Azure Portal, click **Connect → RDP → Download RDP File**.
+<!-- ![Connect via RDP](your-screenshot-url-here) --> <img width="1276" height="655" alt="VM_Lab1 5" src="https://github.com/user-attachments/assets/28c244da-aa18-4ca1-a3d8-15b6c33f591a" />
 3. Open the downloaded `.rdp` file with the native Remote Desktop app (not the browser console — clipboard sharing is limited there).
 4. Before connecting, click **Show Options → Local Resources tab** and check **Clipboard** so you can paste commands into the VM.
 5. Connect using the admin username and password you set at VM creation.
 
-<!-- ![Connect via RDP](your-screenshot-url-here) --> <img width="1276" height="655" alt="VM_Lab1 5" src="https://github.com/user-attachments/assets/28c244da-aa18-4ca1-a3d8-15b6c33f591a" />
+<!-- ![Connect via RDP](your-screenshot-url-here) --> 
 
-<!-- ![Enable clipboard sharing](your-screenshot-url-here) -->
+<!-- ![Enable clipboard sharing](your-screenshot-url-here) --> <img width="543" height="597" alt="Screenshot 2026-08-06 234212" src="https://github.com/user-attachments/assets/f73eef91-5fa3-496b-a972-be215cb3c99f" />
+
 
 ---
 
