@@ -31,8 +31,8 @@
 
 The lab consists of a single Domain Controller running AD DS + DNS for the `lab.local` forest, an organisational unit structure mapped to departments, role-based security groups, and a Group Policy Object enforcing baseline security settings across the IT OU. A second VM domain-joins to validate that policy is actually being pushed and enforced.
 
-<!-- ![Create VM](your-screenshot-url-here) --> <img width="199" height="150" alt="azure-ad-lab-architecture" src="https://github.com/user-attachments/assets/d5f4e436-a398-4f5f-a22c-1fdbbde8eff3" />
-<svg viewBox="0 0 1140 860" xmlns="http://www.w3.org/2000/svg" role="img">
+<!-- ![Create VM](your-screenshot-url-here) --> <img width="1211" height="912" alt="Screenshot 2026-08-07 120400" src="https://github.com/user-attachments/assets/78ace7e4-de34-49fd-94b1-2588906515ad" />
+
 
 ---
 
