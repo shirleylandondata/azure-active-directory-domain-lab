@@ -6,7 +6,6 @@
 ![OS](https://img.shields.io/badge/OS-Windows%20Server%202025-00A4EF)
 
 ---
-<img width="1063" height="843" alt="VM Lab1 3" src="https://github.com/user-attachments/assets/e8c3756a-030a-4667-bf8a-4c672f7fddbb" />
 
 ## Overview
 
