@@ -1,4 +1,4 @@
-# Azure Active Directory Domain Lab
+# Active Directory Setup and Configuration in Azure Microsoft Windows Server
 
 ## **Deploy and configure Active Directory Domain Services (AD DS) on a Windows Server virtual machine hosted in Microsoft Azure.**
 
@@ -10,7 +10,7 @@
 
 ## Overview
 
-This guide provides step-by-step instructions to deploy and configure Active Directory Domain Services (AD DS) on a Windows Server virtual machine hosted in **Microsoft Azure**. You will practice launching an Azure VM, promoting it to a Domain Controller, and managing core identity components like Organizational Units (OUs), security groups, user accounts, and Group Policy.
+## This guide provides step-by-step instructions to deploy and configure Active Directory Domain Services (AD DS) on a Windows Server virtual machine hosted in **Microsoft Azure**. 
 
 ## Watch Me Build This Lab Here!
 
@@ -21,63 +21,16 @@ This guide provides step-by-step instructions to deploy and configure Active Dir
 
 ## Prerequisites
 
-- Azure account 
+- Azure account set up with appropriate permissions
 - Existing or new Resource Group
 - Network Security Group (NSG) allowing RDP (port 3389)
-- Windows Server 2025 Datacenter image 
+- Windows Server 2025 Datacenter
 
 ---
 
 ## Architecture
 
 The lab consists of a single Domain Controller running AD DS + DNS for the `lab.local` forest, an organisational unit structure mapped to departments, role-based security groups, and a Group Policy Object enforcing baseline security settings across the IT OU. A second VM domain-joins to validate that policy is actually being pushed and enforced.
-
-```mermaid
-graph TB
-    subgraph Local["Local Machine"]
-        RDP[RDP Client<br/>Clipboard sharing enabled]
-    end
-
-    subgraph Azure["Azure Free Tier — East US"]
-        subgraph DCVM["VM: Domain Controller<br/>Windows Server 2025 Datacenter<br/>Standard_B2s · 2 vCPU / 4GB RAM"]
-            DNS[DNS Server]
-            ADDS[Active Directory<br/>Domain Services]
-        end
-
-        subgraph Forest["Forest & Domain: lab.local"]
-            OU_IT[OU: IT]
-            OU_FIN[OU: Finance]
-            OU_HR[OU: HR]
-            OU_SALES[OU: Sales]
-            OU_COMP[OU: Computers]
-
-            OU_IT --> G1[Group: IT_Admins]
-            OU_FIN --> G2[Group: Finance_Users]
-            OU_HR --> G3[Group: HR_Users]
-            OU_SALES --> G4[Group: Sales_Users]
-
-            G1 --> U1[alice.chen]
-            G2 --> U2[bob.patel]
-            G3 --> U3[carol.jones]
-            G4 --> U4[david.smith]
-
-            OU_IT --> GPO[GPO: IT Security Policy<br/>• 12-char password min<br/>• Complexity required<br/>• 15-min screen lock<br/>• USB storage denied]
-        end
-
-        subgraph Client["Domain-Joined Workstation"]
-            WS[Test VM<br/>joined to lab.local]
-        end
-    end
-
-    RDP -->|RDP 3389/TCP| DCVM
-    DCVM --> Forest
-    GPO -.->|gpupdate /force| WS
-    OU_COMP -.->|computer object| WS
-
-    style DCVM fill:#0078D4,color:#fff
-    style GPO fill:#D83B01,color:#fff
-    style Forest fill:#f4f4f4,color:#000
-```
 
 ---
 
@@ -360,7 +313,3 @@ az vm delete --resource-group <rg-name> --name <vm-name>
 - Domain Administration
 
 ---
-
-## About
-
-This lab provides step-by-step instructions to deploy Active Directory Domain Services (AD DS) on a Windows Server instance within Microsoft Azure. It covers launching a virtual machine, promoting it to a Domain Controller, and managing core identity components like Organizational Units (OUs), security groups, and user accounts.
