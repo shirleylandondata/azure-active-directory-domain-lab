@@ -130,8 +130,8 @@ Or promote via PowerShell:
 ```powershell
 Import-Module ADDSDeployment
 Install-ADDSForest `
-  -DomainName 'lab.local' `
-  -DomainNetBiosName 'LAB' `
+  -DomainName 'Lab1VM.local' `
+  -DomainNetBiosName 'LAB1VM' `
   -InstallDns:$true `
   -SafeModeAdministratorPassword (ConvertTo-SecureString 'YourDSRMPassword!' -AsPlainText -Force) `
   -Force:$true
@@ -154,29 +154,30 @@ Install-ADDSForest `
 
 
 ```powershell
+
 # Organizational Units
-New-ADOrganizationalUnit -Name "IT"        -Path "DC=lab,DC=local"
-New-ADOrganizationalUnit -Name "Finance"   -Path "DC=lab,DC=local"
-New-ADOrganizationalUnit -Name "HR"        -Path "DC=lab,DC=local"
-New-ADOrganizationalUnit -Name "Sales"     -Path "DC=lab,DC=local"
-New-ADOrganizationalUnit -Name "Computers" -Path "DC=lab,DC=local"
+New-ADOrganizationalUnit -Name "IT"        -Path "DC=Lab1VM,DC=local"
+New-ADOrganizationalUnit -Name "Finance"   -Path "DC=Lab1VM,DC=local"
+New-ADOrganizationalUnit -Name "HR"        -Path "DC=Lab1VM,DC=local"
+New-ADOrganizationalUnit -Name "Sales"     -Path "DC=Lab1VM,DC=local"
+New-ADOrganizationalUnit -Name "Computers" -Path "DC=Lab1VM,DC=local"
 
 # Security groups
-New-ADGroup -Name "IT_Admins"     -GroupScope Global -GroupCategory Security -Path "OU=IT,DC=lab,DC=local"
-New-ADGroup -Name "Finance_Users" -GroupScope Global -GroupCategory Security -Path "OU=Finance,DC=lab,DC=local"
-New-ADGroup -Name "HR_Users"      -GroupScope Global -GroupCategory Security -Path "OU=HR,DC=lab,DC=local"
-New-ADGroup -Name "Sales_Users"   -GroupScope Global -GroupCategory Security -Path "OU=Sales,DC=lab,DC=local"
+New-ADGroup -Name "IT_Admins"     -GroupScope Global -GroupCategory Security -Path "OU=IT,DC=Lab1VM,DC=local"
+New-ADGroup -Name "Finance_Users" -GroupScope Global -GroupCategory Security -Path "OU=Finance,DC=Lab1VM,DC=local"
+New-ADGroup -Name "HR_Users"      -GroupScope Global -GroupCategory Security -Path "OU=HR,DC=Lab1VM,DC=local"
+New-ADGroup -Name "Sales_Users"   -GroupScope Global -GroupCategory Security -Path "OU=Sales,DC=Lab1VM,DC=local"
 
 # Users
 $password = ConvertTo-SecureString "Welcome@2026!" -AsPlainText -Force
 
 New-ADUser -Name "alice.chen" -GivenName "Alice" -Surname "Chen" `
-  -SamAccountName "alice.chen" -UserPrincipalName "alice.chen@lab.local" `
-  -Path "OU=IT,DC=lab,DC=local" -AccountPassword $password -Enabled $true
+  -SamAccountName "alice.chen" -UserPrincipalName "alice.chen@Lab1VM.local" `
+  -Path "OU=IT,DC=Lab1VM,DC=local" -AccountPassword $password -Enabled $true
 
 Add-ADGroupMember -Identity "IT_Admins" -Members "alice.chen"
 # ...repeated per department
-```
+
 
 ---
 
@@ -196,7 +197,7 @@ Add-ADGroupMember -Identity "IT_Admins" -Members "alice.chen"
 <!-- ![Group Policy Management console](your-screenshot-url-here) -->
 <!-- ![GPO settings](your-screenshot-url-here) -->
 
-4. **Verify it actually works:** join a second VM to `lab.local`, move its computer object into the `IT` OU, run `gpupdate /force`, and confirm the screen-lock policy applies on login.
+4. **Verify it actually works:** join a second VM to `Lab1VM.local`, move its computer object into the `IT` OU, run `gpupdate /force`, and confirm the screen-lock policy applies on login.
 
 ---
 
@@ -228,7 +229,7 @@ Get-ADUser -Filter {LastLogonDate -lt $cutoff -and Enabled -eq $true} -Propertie
 | OUs exist | `Get-ADOrganizationalUnit -Filter *` | Lists all 5 OUs |
 | Users exist and enabled | `Get-ADUser -Filter {Enabled -eq $true}` | Lists test accounts |
 | Group membership correct | `Get-ADGroupMember -Identity IT_Admins` | Returns `alice.chen` |
-| GPO linked | `Get-GPInheritance -Target 'OU=IT,DC=lab,DC=local'` | Shows `IT Security Policy` |
+| GPO linked | `Get-GPInheritance -Target 'OU=IT,DC=Lab1VM,DC=local'` | Shows `IT Security Policy` |
 
 ---
 
@@ -239,7 +240,7 @@ Get-ADUser -Filter {LastLogonDate -lt $cutoff -and Enabled -eq $true} -Propertie
 | **AD Organizational Unit path mismatch** (`DC=lab` vs `DC=Lab1VM`) | The domain's actual distinguished-name components didn't match what was assumed when writing OU paths. Confirmed the real domain DN with `Get-ADDomain \| Select DistinguishedName` and corrected every `-Path` argument to match exactly — PowerShell will not fuzzy-match a DN |
 | **Built-in `Computers` container conflict** | Windows auto-creates a default `Computers` container (not a true OU) at domain creation, which cannot have GPOs linked to it. Machine objects landing there silently ignored the GPO. Fix was moving computer objects into the purpose-built `Computers` OU, or redirecting the default computer container with `redircmp` |
 | **Password complexity preventing account enablement** | New accounts failed to enable because the chosen password didn't meet the domain's complexity policy (upper/lower/number/symbol, minimum length). Fixed by generating passwords that satisfied the policy before calling `-Enabled $true`, rather than enabling first and troubleshooting the failure after |
-| **DNS configuration preventing domain join** | Client machines pointed at a public or ISP-provided DNS server instead of the Domain Controller, so they couldn't resolve `lab.local` or locate the domain via SRV records. Fixed by setting the client NIC's preferred DNS server to the DC's static IP before attempting the join |
+| **DNS configuration preventing domain join** | Client machines pointed at a public or ISP-provided DNS server instead of the Domain Controller, so they couldn't resolve `Lab1VM.local` or locate the domain via SRV records. Fixed by setting the client NIC's preferred DNS server to the DC's static IP before attempting the join |
 | **Remote Desktop authorization for domain users** | Domain accounts couldn't RDP into member servers by default — only local Administrators group members can, out of the box. Fixed by adding the relevant domain group to the target machine's **Remote Desktop Users** local group |
 
 ---
