@@ -1,10 +1,9 @@
 # Azure Active Directory Domain Lab
 
-**Deploy and configure Active Directory Domain Services (AD DS) on a Windows Server virtual machine hosted in Microsoft Azure.**
+## **Deploy and configure Active Directory Domain Services (AD DS) on a Windows Server virtual machine hosted in Microsoft Azure.**
 
 ![Platform](https://img.shields.io/badge/platform-Azure-0078D4?logo=microsoftazure&logoColor=white)
 ![OS](https://img.shields.io/badge/OS-Windows%20Server%202025-00A4EF)
-![Cost](https://img.shields.io/badge/cost-%240-brightgreen)
 
 ---
 <img width="1063" height="843" alt="VM Lab1 3" src="https://github.com/user-attachments/assets/e8c3756a-030a-4667-bf8a-4c672f7fddbb" />
@@ -13,7 +12,7 @@
 
 This guide provides step-by-step instructions to deploy and configure Active Directory Domain Services (AD DS) on a Windows Server virtual machine hosted in **Microsoft Azure**. You will practice launching an Azure VM, promoting it to a Domain Controller, and managing core identity components like Organizational Units (OUs), security groups, user accounts, and Group Policy.
 
-### Watch Me Build This Lab Here!
+## Watch Me Build This Lab Here!
 
 <!-- Replace with your own screen recording link (Loom, YouTube, etc.) once you have one -->
 - *[Add a walkthrough video link here]*
