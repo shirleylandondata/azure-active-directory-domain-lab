@@ -88,12 +88,13 @@ graph TB
 1. Sign in to the **Azure Portal** (portal.azure.com).
 2. Go to **Virtual machines → Create → Azure virtual machine**.
 
-<!-- ![Create VM](your-screenshot-url-here) -->
+<!-- ![Create VM](your-screenshot-url-here) --> <img width="1061" height="782" alt="VM_lab1 1" src="https://github.com/user-attachments/assets/b324c670-3415-478f-b83d-5cc72713bdd4" />
 
 3. Choose the **Windows Server 2025 Datacenter (Gen2)** image.
 4. Select a VM size — `Standard_B2s` (2 vCPU / 4GB RAM) is enough for this lab and fits within free-tier credit.
 
-<!-- ![Select image and size](your-screenshot-url-here) -->
+<!-- ![Select image and size](your-screenshot-url-here) --> <img width="1062" height="832" alt="VM_lab1 2" src="https://github.com/user-attachments/assets/3c06a9c3-2f00-42b9-904f-26c8bdbba27b" />
+
 <!-- ![Choose VM size](your-screenshot-url-here) -->
 
 5. Configure **networking**:
