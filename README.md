@@ -21,10 +21,10 @@ This guide provides step-by-step instructions to deploy and configure Active Dir
 
 ## Prerequisites
 
-- Azure account (Azure Free Account works — includes $200 credit)
+- Azure account 
 - Existing or new Resource Group
 - Network Security Group (NSG) allowing RDP (port 3389)
-- Windows Server 2025 Datacenter image (includes free 180-day evaluation licence)
+- Windows Server 2025 Datacenter image 
 
 ---
 
