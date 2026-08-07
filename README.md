@@ -233,11 +233,6 @@ Get-ADUser -Filter {LastLogonDate -lt $cutoff -and Enabled -eq $true} -Propertie
 
 | Problem | Root cause / fix |
 |---|---|
-| `New-ADUser` prompts for `Name:` | `$password` variable wasn't defined before the command ran — run the full script block together, not line by line |
-| Clipboard doesn't work over RDP | Enable **Local Resources → Clipboard** in the RDP client, or use a downloaded `.rdp` file instead of the browser console |
-| Domain promotion fails on DNS conflict | Set the NIC's preferred DNS to `127.0.0.1` before promoting |
-| Can't RDP after domain join | Log in as `LAB\Administrator`, not local `Administrator` |
-| GPO not applying | Run `gpupdate /force`, then `gpresult /r` to confirm which policies actually landed |
 | **AD Organizational Unit path mismatch** (`DC=lab` vs `DC=Lab1VM`) | The domain's actual distinguished-name components didn't match what was assumed when writing OU paths. Confirmed the real domain DN with `Get-ADDomain \| Select DistinguishedName` and corrected every `-Path` argument to match exactly — PowerShell will not fuzzy-match a DN |
 | **Built-in `Computers` container conflict** | Windows auto-creates a default `Computers` container (not a true OU) at domain creation, which cannot have GPOs linked to it. Machine objects landing there silently ignored the GPO. Fix was moving computer objects into the purpose-built `Computers` OU, or redirecting the default computer container with `redircmp` |
 | **Password complexity preventing account enablement** | New accounts failed to enable because the chosen password didn't meet the domain's complexity policy (upper/lower/number/symbol, minimum length). Fixed by generating passwords that satisfied the policy before calling `-Enabled $true`, rather than enabling first and troubleshooting the failure after |
